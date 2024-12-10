@@ -30,7 +30,8 @@ if uploaded_image:
 
     # Simpan gambar sebagai JPG
     buffer_jpg = io.BytesIO()
-    rotated_image.save(buffer_jpg, format="JPEG")
+    rotated_image_rgb = rotated_image.convert("RGB")  # Konversi ke mode RGB
+    rotated_image_rgb.save(buffer_jpg, format="JPEG")
     st.download_button(
         label="Download sebagai JPG",
         data=buffer_jpg.getvalue(),
@@ -50,7 +51,7 @@ if uploaded_image:
 
     # Simpan gambar sebagai PDF
     buffer_pdf = io.BytesIO()
-    rotated_image.convert("RGB").save(buffer_pdf, format="PDF")
+    rotated_image_rgb.save(buffer_pdf, format="PDF")  # Gunakan gambar RGB untuk PDF
     st.download_button(
         label="Download sebagai PDF",
         data=buffer_pdf.getvalue(),
