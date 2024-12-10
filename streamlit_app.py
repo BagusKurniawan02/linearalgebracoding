@@ -3,57 +3,61 @@ from PIL import Image
 import io
 
 # Judul aplikasi
-st.title("Rotating Picture with Download Option")
+st.title("Rotating Picture with Download Options")
 
 # Upload gambar
 uploaded_image = st.file_uploader("Upload gambar (PNG atau JPG)", type=["png", "jpg", "jpeg"])
 
 if uploaded_image:
-    # Baca gambar
+    # Membaca gambar yang diunggah
     image = Image.open(uploaded_image)
 
-    # Slider untuk rotasi
+    # Slider untuk mengatur rotasi gambar
     angle = st.slider("Rotasi gambar (derajat)", 0, 360, 0)
 
-    # Rotasi gambar
+    # Melakukan rotasi gambar
     rotated_image = image.rotate(angle)
 
-    # Tampilkan gambar asli dan gambar yang sudah dirotasi
+    # Menampilkan gambar asli
     st.subheader("Gambar Asli")
-    st.image(image, use_column_width=True)
+    st.image(image, caption="Gambar Asli", use_column_width=True)
 
+    # Menampilkan gambar setelah rotasi
     st.subheader("Gambar Setelah Rotasi")
-    st.image(rotated_image, use_column_width=True)
+    st.image(rotated_image, caption="Gambar Setelah Rotasi", use_column_width=True)
 
-    # Tombol unduh
-    st.subheader("Download Gambar")
-
-    # Simpan gambar sebagai JPG
+    # Menyiapkan file untuk diunduh
+    st.subheader("Unduh Gambar Hasil Rotasi")
+    
+    # Simpan sebagai JPG
     buffer_jpg = io.BytesIO()
-    rotated_image.save(buffer_jpg, format="JPEG")
+    rotated_image.convert("RGB").save(buffer_jpg, format="JPEG")
+    buffer_jpg.seek(0)
     st.download_button(
         label="Download sebagai JPG",
-        data=buffer_jpg.getvalue(),
+        data=buffer_jpg,
         file_name="rotated_image.jpg",
         mime="image/jpeg",
     )
 
-    # Simpan gambar sebagai PNG
+    # Simpan sebagai PNG
     buffer_png = io.BytesIO()
     rotated_image.save(buffer_png, format="PNG")
+    buffer_png.seek(0)
     st.download_button(
         label="Download sebagai PNG",
-        data=buffer_png.getvalue(),
+        data=buffer_png,
         file_name="rotated_image.png",
         mime="image/png",
     )
 
-    # Simpan gambar sebagai PDF
+    # Simpan sebagai PDF
     buffer_pdf = io.BytesIO()
     rotated_image.convert("RGB").save(buffer_pdf, format="PDF")
+    buffer_pdf.seek(0)
     st.download_button(
         label="Download sebagai PDF",
-        data=buffer_pdf.getvalue(),
+        data=buffer_pdf,
         file_name="rotated_image.pdf",
         mime="application/pdf",
     )
