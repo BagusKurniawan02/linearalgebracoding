@@ -45,7 +45,7 @@ if uploaded_image:
     st.download_button(
         label="Download sebagai PNG",
         data=buffer_png.getvalue(),
-        file_name="rotated_image_triokacamata.png",
+        file_name="rotated_image_bytriokacamata.png",
         mime="image/png",
     )
 
@@ -55,6 +55,6 @@ if uploaded_image:
     st.download_button(
         label="Download sebagai PDF",
         data=buffer_pdf.getvalue(),
-        file_name="rotated_image_triokacamata.pdf",
+        file_name="rotated_image_by.triokacamata.pdf",
         mime="application/pdf",
     )
