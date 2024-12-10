@@ -3,7 +3,7 @@ from PIL import Image
 import io
 
 # Judul aplikasi
-st.title("Upload Gambar untuk Merotasi")
+st.title("Upload Gambar untuk Merotasi by triokacamata")
 
 # Upload gambar
 uploaded_image = st.file_uploader("Upload gambar (PNG atau JPG)", type=["png", "jpg", "jpeg"])
