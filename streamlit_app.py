@@ -3,7 +3,7 @@ from PIL import Image
 import io
 
 # Judul aplikasi
-st.title("Rotating Picture with Download Option")
+st.title("Upload Gambar untuk Merotasi")
 
 # Upload gambar
 uploaded_image = st.file_uploader("Upload gambar (PNG atau JPG)", type=["png", "jpg", "jpeg"])
